@@ -1,8 +1,5 @@
 module RwthLecture8(hamming, putString, echo) where
-
-import Text.Printf(printf)
--- import Text.Format(format)
--- 1.3 Programming with lazy evaluation
+--   1.3 Programming with lazy evaluation
 -- Hamming numbers
 
 -- if a non-function variable occurs in right hand side of its definition => circular data object
@@ -43,6 +40,6 @@ echo = getChar >>= putChar
 
 gets :: Int -> IO String
 gets 0      = return []
-gets (n)  = getChar >>= \x -> 
-                gets (n-1) >>= \xs -> 
+gets n  = getChar >>= \x ->
+                gets (n-1) >>= \xs ->
                     return (x:xs)
