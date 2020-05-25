@@ -38,22 +38,4 @@ because first argument will be evaluated infinitely.
 
 Potential arguments can be described by terms just containing variables and constructors.
 
-    • Pattern matching for integers (is pattern matching for natural numbers, not for negative):
-        Int → 0 | Int + 1
-
-This patterns only describe natural numbers:
-
-        fac :: Int → Int
-        fac 0       = 1
-        fac (x + 1) = (x + 1) * fac x
-
-To avoid the error with negative numbers we have to define the third equation:
-	
-        fac x		= 1
-
-Instead of patterns like "x + 1 + 1" one has to write "x + 2":
-        
-        half :: Int → Int
-        half 0          = 0
-        half 1          = 0
-        half (x + 2)    = 1 + half x
+_(**n+k** pattern have been removed from the language)_
