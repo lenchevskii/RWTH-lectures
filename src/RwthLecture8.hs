@@ -45,6 +45,6 @@ echo = getChar >>= putChar
 -- Function that takes the first n letters entered
 gets :: Int -> IO String
 gets 0      = return []
-gets n  = getChar >>= \x ->
+gets n      = getChar >>= \x ->
                 gets (n-1) >>= \xs ->
                     return (x:xs)
