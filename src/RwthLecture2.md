@@ -15,23 +15,26 @@ _(continue)_
         und	True 	y	= y
         und	False 	y 	= False
 
-Patterns can describe the potential form of the argument using data-constructers of the respective data type.   
+Patterns can describe the potential form of the argument using data-constructors of the respective data type.   
 Constructors always start with a capital letter.
 
 Checking works from left to right from top equation to bottom.
 
-    unclear :: Int → Bool
-    unclear x = not (unclear x)
+        unclear :: Int → Bool
+        unclear x = not (unclear x)
 
 Interesting question: what happens if evaluate the following term:
     
         und False (unclear 0)   = False
+
 on the other hand:
 
         und (unclear 0) False 	= doesn’t terminate
 
+because first argument will be evaluated infinitely. 
+
     • Pattern matching for lists:
-    [data] → [] | data : [data]     List constructors: [ ], :
+        [data] → [] | data : [data]     List constructors: [ ], :
 
 Potential arguments can be described by terms just containing variables and constructors.
 
@@ -40,17 +43,17 @@ Potential arguments can be described by terms just containing variables and cons
 
 This patterns only describe natural numbers:
 
-    fac :: Int → Int
-    fac 0       = 1
-    fac (x + 1) = (x + 1) * fac x
+        fac :: Int → Int
+        fac 0       = 1
+        fac (x + 1) = (x + 1) * fac x
 
 To avoid the error with negative numbers we have to define the third equation:
 	
-    fac x		= 1
+        fac x		= 1
 
 Instead of patterns like ‘x + 1 + 1’ one has to write ‘x + 2’.
-    
-    half :: Int → Int
-    half 0          = 0
-    half 1          = 0
-    half (x + 2)    = 1 + half x
+        
+        half :: Int → Int
+        half 0          = 0
+        half 1          = 0
+        half (x + 2)    = 1 + half x
