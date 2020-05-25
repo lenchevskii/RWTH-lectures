@@ -1,6 +1,9 @@
 module RwthLecture8(hamming, putString, echo) where
---   1.3 Programming with lazy evaluation
--- Hamming numbers
+-- Hamming problem: infinite list with:
+-- 1. List is ordered and contain no duplicates
+-- 2. List starts with 1
+-- 3. If x is in the list, then the list also contains 2*x, 3*x, 5*x
+-- 4. The list does not contain any elements
 
 -- if a non-function variable occurs in right hand side of its definition => circular data object
 
@@ -14,7 +17,7 @@ mer (x:xs) (y:ys)   | x < y     = x : mer xs (y:ys)
 hamming :: [Integer]
 hamming = 1 : mer (map (2*) hamming) (mer (map (3*) hamming) (map (5*) hamming))
 
--- 1.4 Monads
+--   1.4 Monads
 -- (>>) - (double greater) pronounced 'then'. This operation is used to composed actions.
 -- The result is the action.
 putString :: String -> IO ()
