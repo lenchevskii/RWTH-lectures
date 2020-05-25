@@ -34,7 +34,7 @@ on the other hand:
 because first argument will be evaluated infinitely. 
 
     • Pattern matching for lists:
-        [data] → [] | data : [data]     List constructors: [ ], :
+        [data] → [] | data : [data]     List constructors: [ ], (:)
 
 Potential arguments can be described by terms just containing variables and constructors.
 
@@ -51,7 +51,7 @@ To avoid the error with negative numbers we have to define the third equation:
 	
         fac x		= 1
 
-Instead of patterns like ‘x + 1 + 1’ one has to write ‘x + 2’.
+Instead of patterns like "x + 1 + 1" one has to write "x + 2":
         
         half :: Int → Int
         half 0          = 0
