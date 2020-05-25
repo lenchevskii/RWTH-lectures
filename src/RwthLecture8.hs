@@ -1,4 +1,4 @@
-module RwthLecture8(hamming, putString, echo) where
+module RwthLecture8(hamming, putString, echo, gets) where
 -- Hamming problem: infinite list with:
 -- 1. List is ordered and contain no duplicates
 -- 2. List starts with 1
@@ -7,13 +7,13 @@ module RwthLecture8(hamming, putString, echo) where
 
 -- if a non-function variable occurs in right hand side of its definition => circular data object
 
--- merge two lists removing duplicates
+-- Merge two lists removing duplicates:
 mer :: Ord a => [a] -> [a] -> [a]
 mer (x:xs) (y:ys)   | x < y     = x : mer xs (y:ys)
                     | x == y    = x : mer xs ys
                     | otherwise = y : mer (x:xs) ys
 
--- circular data object (calculate Hamming's numbers list)
+-- Circular data object (calculate Hamming's numbers list)
 hamming :: [Integer]
 hamming = 1 : mer (map (2*) hamming) (mer (map (3*) hamming) (map (5*) hamming))
 
@@ -38,9 +38,11 @@ putString (x:xs)   = putChar x >> putString xs
 -- To compose actions, where action 2 can access the value computed by action 1:
 --      (>>=) :: IO a -> (a -> IO b) - IO b     -- function which called "bind"
 
+-- Function that prints the entered character
 echo :: IO ()
 echo = getChar >>= putChar
 
+-- Function that takes the first n letters entered
 gets :: Int -> IO String
 gets 0      = return []
 gets n  = getChar >>= \x ->
