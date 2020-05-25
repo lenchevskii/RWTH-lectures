@@ -44,5 +44,3 @@ Pattern must be linear (no variable may occur more than once).
 
 Patterns are essentially linear terms of variables and data constructors.   
 Pattern matching works from left to right.
-
-
