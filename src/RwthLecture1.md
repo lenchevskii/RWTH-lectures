@@ -23,9 +23,9 @@ Define Haskell syntax by a context-free grammar.
 Type declarations: describe types of arguments and results of a function.
 Function declaration: describe what function does.
 
-    • Type declaration: 	    square :: Int → Int
-    • Function declaration:	    square x = x * x
-    				              lhs       rhs
+    • Type declaration:         square :: Int → Int
+    • Function declaration:     square x = x * x
+                                  lhs       rhs
 where **lhs** is a left hand side, and **rhs** is a right hand side, **x** is a ‘pattern’
     
     • Evaluation of expression
@@ -44,8 +44,8 @@ Termination behavior depends on evaluation strategy:
 
 If any evaluation terminates, then outermost evaluation terminates as well:
 
-        non_term :: Int → Int			three :: Int → Int
-        non_term x = non_term (x + 1)	three x = 3
+        non_term :: Int → Int           three :: Int → Int
+        non_term x = non_term (x + 1)   three x = 3
 
 The question is: what happens if we evaluate the following term:
 
