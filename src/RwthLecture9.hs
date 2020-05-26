@@ -130,3 +130,9 @@ eval1M (Div t u)    = do x <- eval1M t
 
 -- 2. Evaluation with exception handling (with monads)
 -- Maybe is the error monad.
+
+eval2M :: Term -> Maybe Float
+eval2M (Con x)      = return x
+eval2M (Div t u)    = do x <- eval2M t
+                         y <- eval2M u
+                         if y /= 0 then return (x/y) else Nothing
