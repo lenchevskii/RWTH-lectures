@@ -62,7 +62,7 @@ module RwthLecture9() where
 -- whereas with monads it requires only very few changes at certain points,
 -- which can be identified clearly.
 
-data Term = Con Float | Div Term Term
+data Term = Con Float | Div Term Term deriving (Show)
 
 -- 1. Simple evaluation (without monads):
 -- Func eval1 takes a Term and returns an object of a type which can be printed
@@ -76,14 +76,14 @@ instance Show a => Show (Value a) where
 -- With the implementation of show for type Value a, the object (Result 6) would
 -- be printed as "Result: 6"
 
-let t1 = Div (Con 6) (Con 3)    -- stands for 6/3
-let t2 = Div (Con 1) (Con 0)    -- stands for 1/0
+t1 = Div (Con 6) (Con 3)    -- stands for 6/3
+t2 = Div (Con 1) (Con 0)    -- stands for 1/0
 
 eval1 :: Term -> Value Float
 eval1 (Con x)   = Result x
 eval1 (Div t u) = Result (x/y)
-                    where   Result x = eval t
-                            Result y = eval u
+                    where   Result x = eval1 t
+                            Result y = eval1 u
 
 -- eval1 t1 ↷ Result: 2.0
 -- eval1 t1 ↷ Error, Division by zero
@@ -102,4 +102,31 @@ eval2 (Div t u) = case eval2 t of
                                               then Nothing
                                               else Just (x/y)
 
--- => requires a lot of changes in the eval function
+-- => requires a lot of changes in the eval-function (would be even worse if we 
+-- also had terms built with Plus, Minus, Times, ...)
+
+-- 1. Simple evaluation (with monads)
+-- Value is the identity monad.
+
+instance Functor Value where  
+    fmap f (Result x) = Result (f x)  
+
+instance Applicative Value where
+    pure                        = Result
+    (Result f) <*> something    = fmap f something
+
+instance Monad Value where
+    return          = Result
+    Result x >>= q  = q x
+
+eval1M :: Term -> Value Float
+eval1M (Con x)      = return x
+eval1M (Div t u)    = do x <- eval1M t
+                         y <- eval1M u
+                         return (x/y)
+
+-- Advantage: main program (eval) almost the same when performing changes, only
+-- the implementation of return and >>= changes.
+
+-- 2. Evaluation with exception handling (with monads)
+-- Maybe is the error monad.

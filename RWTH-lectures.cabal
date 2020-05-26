@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f6f50accd1d463713683d54b194df6c5dbda7205ebc76d922f4b70bfedadd022
+-- hash: dea9ccb60b10be57dd472f0ef635671f2c4e57b8a4af4fd7911e797607e322f0
 
 name:           RWTH-lectures
 version:        0.1.0.0
@@ -27,9 +27,9 @@ source-repository head
 
 library
   exposed-modules:
-      RwthLecture4
       RwthLecture7
       RwthLecture8
+      RwthLecture9
   other-modules:
       Paths_RWTH_lectures
   hs-source-dirs:
