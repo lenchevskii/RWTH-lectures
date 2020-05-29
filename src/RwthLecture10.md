@@ -16,7 +16,7 @@ Defined the semantics by a fuction
     Val(square) = funtion on integers which computes the square of a number
 where "square" is a Haskell-expression (square funtion)
 
-    Val(non_term) = function on integers which maps every number to the value ⊥("bottom") - special value which stands for undefined
+    Val(non_term) = function on integers which maps every number to the value ⊥ ("bottom") - special value which stands for undefined
 
 Domain (domain needed for semantics) should include Z, ⊥, functions, tuples, ...
 
@@ -155,3 +155,25 @@ A function g D<sub>1</sub> × ... × D<sub>n</sub> → D for domains  D<sub>1</s
 
 Otherwise, g is **non-strict**.
 
+For instance:
+
+    one :: Int -> Int
+    one x = 1
+
+Val(one) ∈ Z<sub>⊥</sub> → Z<sub>⊥</sub>
+
+Val(one) = f, f(x) = 1 for all x ∈ Z
+
+The question is what happens if we apply f to bottom: **how should f(⊥<sub>Z<sub>⊥</sub></sub>) be defined?**
+
+Val(one(non_term 0)) = f(⊥<sub>Z<sub>⊥</sub></sub>)
+
+Choices for the semantics of **one**:
+
+    (a) f1(x) = 1 for x ∈ Z, f1(⊥) = 1    (non-strict)
+    (b) f2(x) = 1 for x ∈ Z, f2(⊥) = 1    (strict)
+    (c) f3(x) = 1 for x ∈ Z, f3(⊥) = 1    (not computable)
+
+We use (a), because Haskell is non-strict and does outermost evaluation.
+In languages with call-by-value evaluation (innermost evaluation), one would use (b).   
+Function **f3** is not computable: in order to find out the argument is defined, the computer would have to solve the halting problem. => Exclude functions like **f3** from our domains.
