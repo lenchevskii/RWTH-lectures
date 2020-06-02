@@ -29,7 +29,7 @@ Function declaration: describe what function does.
 where **lhs** is a left hand side, and **rhs** is a right hand side, **x** is a ‘pattern’
     
     • Evaluation of expression
-
+![evaluation of expression](/static/evaluation.png)
 Evaluation strategy does not determine the result (the result always the same), but it determines the termination behavior and efficiency.
 
     • Innermost evaluation: always evaluate as far to the inside as possible (evaluate the argument first) – call-by-value / eager-evaluation
