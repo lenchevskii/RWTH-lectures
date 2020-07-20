@@ -8,3 +8,6 @@
 -   1.1 Basic constructs of Haskell (programming technics in functional languages)
 -   1.2 Higher-order functions
 -   1.3 Programming with lazy evaluation
+-   1.4 Monads
+### 2. Semantics of FP (denotation semantics)
+-   2.1 Complete partial orders and fixpoints
